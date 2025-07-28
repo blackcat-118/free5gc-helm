@@ -110,11 +110,15 @@ upf:
   tolerations: []
   affinity: {}
   autoscaling:
-    enabled: false
+    enabled: true
     minReplicas: 1
     maxReplicas: 100
-    targetCPUUtilizationPercentage: 80
-    # targetMemoryUtilizationPercentage: 80
+    # targetCPUUtilizationPercentage: 80
+    # targetMemoryUtilizationPercentage: 
+    customMetric:
+      enabled: true
+      name: predicted_upf_cpu
+      averageValue: "700m"  # Example value, adjust as needed
   configuration:
     dnnList: # The DNN list supported by UPF
       - dnn: internet # Data Network Name
