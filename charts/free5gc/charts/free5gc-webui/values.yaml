@@ -61,9 +61,9 @@ webui:
   name: webui
   replicaCount: 1
   image:
-    name: free5gc/webui
-    tag: v3.4.2
-    pullPolicy: Always
+    name: free5gc/webconsole-base
+    tag: v4.0.1
+    pullPolicy: Never
   service:
     name: webui-service
     type: NodePort
