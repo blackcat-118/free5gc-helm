@@ -56,9 +56,9 @@ smf:
   name: smf
   replicaCount: 1
   image:
-    name: free5gc/smf
+    name: free5gc/smf-base
     tag: v4.0.1
-    pullPolicy: Always
+    pullPolicy: Never
   service:
     type: ClusterIP
     port: 80
@@ -114,9 +114,9 @@ smf:
         - nsmf-event-exposure
         - nsmf-oam
     urrConfiguration: |-
-      urrPeriod: 10 # default usage report period in seconds
-      urrThreshold: 1000 # default usage report threshold in bytes
-      requestedUnit: 1000
+      urrPeriod: 6000 # default usage report period in seconds
+      urrThreshold: 1000000 # default usage report threshold in bytes
+      requestedUnit: 5000
     configuration: |-
       smfName: SMF
       snssaiInfos:
