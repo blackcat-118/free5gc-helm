@@ -41,9 +41,9 @@ nssf:
   name: nssf
   replicaCount: 1
   image:
-    name: free5gc/nssf
-    tag: v3.4.2
-    pullPolicy: Always
+    name: free5gc/nssf-base
+    tag: v4.0.1
+    pullPolicy: Never
   service:
     type: ClusterIP
     port: 80

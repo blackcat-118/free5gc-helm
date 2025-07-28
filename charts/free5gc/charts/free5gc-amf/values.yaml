@@ -63,9 +63,9 @@ amf:
   name: amf
   replicaCount: 1
   image:
-    name: free5gc/amf
-    tag: v3.4.2
-    pullPolicy: Always
+    name: free5gc/amf-base
+    tag: v4.0.1
+    pullPolicy: Never
   service:
     type: ClusterIP
     port: 80
@@ -151,6 +151,7 @@ amf:
               sd: 112233
       supportDnnList:
         - internet
+        - internet2
       security:
         integrityOrder:
           - NIA2
