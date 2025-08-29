@@ -16,7 +16,7 @@
 
 global:
   name: free5gc
-  userPlaneArchitecture: ulcl  # possible values are "single" and "ulcl"
+  userPlaneArchitecture: single  # possible values are "single" and "ulcl"
   nrf:
     service:
       name: nrf-nnrf
@@ -38,7 +38,7 @@ global:
         type: NodePort
   smf:
     n4if:
-      ipAddress: 10.100.50.240
+      ipAddress: 10.100.50.157
   #Global network parametes
   n2network:
     enabled: true
@@ -54,23 +54,23 @@ global:
     name: n3network
     type: ipvlan
     masterIf: eth0
-    subnetIP: 10.100.50.232
-    rangeStart: 10.100.50.233
-    rangeEnd: 10.100.50.237
-    cidr: 29
-    gatewayIP: 10.100.50.238
-    excludeIP: 10.100.50.238
+    subnetIP: 10.100.50.128
+    rangeStart: 10.100.50.129
+    rangeEnd: 10.100.50.133
+    cidr: 28
+    gatewayIP: 10.100.50.142
+    excludeIP: 10.100.50.142
   n4network:
     enabled: true
     name: n4network
     type: ipvlan
     masterIf: eth0
-    subnetIP: 10.100.50.240
-    rangeStart: 10.100.50.241
-    rangeEnd: 10.100.50.245
-    cidr: 29
-    gatewayIP: 10.100.50.246
-    excludeIP: 10.100.50.246
+    subnetIP: 10.100.50.144
+    rangeStart: 10.100.50.145
+    rangeEnd: 10.100.50.149
+    cidr: 28
+    gatewayIP: 10.100.50.158
+    excludeIP: 10.100.50.158
   n6network:
     enabled: true
     name: n6network
@@ -79,7 +79,7 @@ global:
     subnetIP: 172.18.0.0
     rangeStart: 172.18.0.22
     rangeEnd: 172.18.0.26
-    cidr: 16
+    cidr: 24
     gatewayIP: 172.18.0.1
     excludeIP: 172.18.0.0
   n9network:

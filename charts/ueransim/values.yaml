@@ -30,10 +30,10 @@ global:
     name: n3network
     type: ipvlan
     masterIf: eth0
-    subnetIP: 10.100.50.232
-    cidr: 29
-    gatewayIP: 10.100.50.238
-    excludeIP: 10.100.50.238
+    subnetIP: 10.100.50.128
+    cidr: 28
+    gatewayIP: 10.100.50.142
+    excludeIP: 10.100.55.142
 
 
 projectName: ueransim
@@ -65,7 +65,7 @@ gnb:
   n2if:  # NGAP
     ipAddress: 10.100.50.250
   n3if:  # GTP-U
-    ipAddress: 10.100.50.236
+    ipAddress: 10.100.50.141
 
   amf:
     n2if:  # NGAP
