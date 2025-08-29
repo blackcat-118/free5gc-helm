@@ -43,6 +43,7 @@ data:
         nodeID: {{ $.Values.global.smf.n4if.ipAddress }}
         listenAddr: {{ $.Values.global.smf.n4if.ipAddress }}
         externalAddr: {{ $.Values.global.smf.n4if.ipAddress }}
+        heartbeatInterval: 10s
 
       {{- .configuration.configuration | nindent 6 }}
 

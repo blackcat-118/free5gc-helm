@@ -57,7 +57,13 @@ data:
     {{- $.Values.upf.configmap.wrapperAdditionalCommands | toYaml | indent 2 }}
     {{- end }}
 
-    /free5gc/upf -c {{ .volume.mount }}/upfcfg.yaml
+    exec /free5gc/upf -c {{ .volume.mount }}/upfcfg.yaml & pid=$!
+    # Trap the SIGTERM signal and forward it to the main process
+    echo 'trap SIGTERM'
+    trap 'kill -15 $pid; wait $pid' TERM
+
+    # Wait for the main process to complete
+    wait $pid
 
 {{- end }}
 {{- end }}
