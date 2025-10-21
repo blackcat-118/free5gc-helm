@@ -72,8 +72,8 @@ nrf:
   securityContext: {}
   resources:
     requests:
-      cpu: 100m
-      memory: 128Mi
+      cpu: 200m
+      memory: 256Mi
   readinessProbe:
     initialDelaySeconds: 0
     periodSeconds: 1

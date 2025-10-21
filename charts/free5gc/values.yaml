@@ -45,8 +45,8 @@ global:
     name: n2network
     type: ipvlan
     masterIf: eth0
-    subnetIP: 10.100.50.248
-    cidr: 29
+    subnetIP: 10.100.50.240
+    cidr: 28
     gatewayIP: 10.100.50.254
     excludeIP: 10.100.50.254
   n3network:
@@ -55,7 +55,7 @@ global:
     type: ipvlan
     masterIf: eth0
     subnetIP: 10.100.50.128
-    rangeStart: 10.100.50.129
+    rangeStart: 10.100.50.128
     rangeEnd: 10.100.50.133
     cidr: 28
     gatewayIP: 10.100.50.142
@@ -66,7 +66,7 @@ global:
     type: ipvlan
     masterIf: eth0
     subnetIP: 10.100.50.144
-    rangeStart: 10.100.50.145
+    rangeStart: 10.100.50.144
     rangeEnd: 10.100.50.149
     cidr: 28
     gatewayIP: 10.100.50.158
@@ -99,7 +99,7 @@ deployAmf: true
 deployAusf: true
 deployChf: true
 deployN3iwf: false
-deployNef: true
+deployNef: false
 deployNrf: true
 deployNssf: true
 deployPcf: true
