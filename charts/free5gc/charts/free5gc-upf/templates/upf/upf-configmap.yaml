@@ -27,7 +27,7 @@ data:
     pfcp:
       addr: {{ .n4if.ipAddress }} # IP addr for listening
       nodeID: {{ .n4if.ipAddress }} # External IP or FQDN can be reached
-      retransTimeout: 1s # retransmission timeout
+      retransTimeout: 5s # retransmission timeout
       maxRetrans: 3 # the max number of retransmission
       ifname: n4 # the interface name of the N4 interface
 
@@ -46,6 +46,9 @@ data:
   wrapper.sh: |
     #!/bin/sh
 
+    ### clean up 
+    ip link del upfgtp
+    
     ### Implement networking rules
     iptables -A FORWARD -j ACCEPT
     iptables -t nat -A POSTROUTING -s {{ $.Values.global.uesubnet }} -o n6 -j MASQUERADE  # route traffic comming from the UE SUBNET to the interface N6

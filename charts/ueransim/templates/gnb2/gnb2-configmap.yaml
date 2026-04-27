@@ -10,7 +10,7 @@
 # Author: Abderaouf KHICHANE, Ilhem FAJJARI, Ayoub BOUSSELMI
 # Software description: An open-source project providing Helm charts to deploy 5G components (Core + RAN) on top of Kubernetes
 #
-{{- with .Values.ue }}
+{{- with .Values.gnb2 }}
 {{- if .enabled }}
 apiVersion: v1
 kind: ConfigMap
@@ -20,27 +20,23 @@ metadata:
     app: {{ $.Values.projectName }}
     component: {{ .name }}
 data:
-  ue-config.yaml: |
+  gnb-config.yaml: |
 
     {{- .configuration | nindent 4 }}
     
-    # List of gNB IP addresses for Radio Link Simulation
-    gnbSearchList:
-      - {{ $.Values.gnb.service.name }}
-      - {{ $.Values.gnb1.service.name }}
-      - {{ $.Values.gnb2.service.name }}
-      # - {{ $.Values.gnb3.service.name }}
-      # - {{ $.Values.gnb4.service.name }}
-
-  wrapper.sh: |
-    #!/bin/bash
-
-    mkdir /dev/net
-    mknod /dev/net/tun c 10 200
-
-    {{ .command }} 
-
-    {{ .script | nindent 4 }}
+    linkIp: 0.0.0.0   # gNB's local IP address for Radio Link Simulation (Usually same with local IP)
+    # gNB's local IP address for N2 Interface (Usually same with local IP)
+{{- if .amf.service.ngap.enabled }}
+    ngapIp: 0.0.0.0   
+{{- else }}
+    ngapIp: {{ .n2if.ipAddress }} 
+{{- end }}
+    gtpIp: {{ .n3if.ipAddress }}    # gNB's local IP address for N3 Interface (Usually same with local IP)
+    
+    # List of AMF address information
+    amfConfigs:
+      - address: {{ .amf.n2if.ipAddress }}
+        port: {{ .amf.n2if.port }}
 
 {{- end }}
 {{- end }}

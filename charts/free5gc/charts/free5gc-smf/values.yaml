@@ -114,8 +114,8 @@ smf:
         - nsmf-event-exposure
         - nsmf-oam
     urrConfiguration: |-
-      urrPeriod: 6000 # default usage report period in seconds
-      urrThreshold: 1000000 # default usage report threshold in bytes
+      urrPeriod: 60000 # default usage report period in seconds
+      urrThreshold: 10000000 # default usage report threshold in bytes
       requestedUnit: 5000
     configuration: |-
       smfName: SMF

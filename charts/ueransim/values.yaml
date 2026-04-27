@@ -21,8 +21,8 @@ global:
     name: n2network
     type: ipvlan
     masterIf: eth0
-    subnetIP: 10.100.50.248
-    cidr: 29
+    subnetIP: 10.100.50.240
+    cidr: 28
     gatewayIP: 10.100.50.254
     excludeIP: 10.100.50.254
   n3network:
@@ -63,9 +63,9 @@ gnb:
     protocol: UDP
 
   n2if:  # NGAP
-    ipAddress: 10.100.50.250
+    ipAddress: 10.100.50.241
   n3if:  # GTP-U
-    ipAddress: 10.100.50.141
+    ipAddress: 10.100.50.135
 
   amf:
     n2if:  # NGAP
@@ -99,6 +99,235 @@ gnb:
         sd: 0x010203
     # Indicates whether or not SCTP stream number errors should be ignored.
     ignoreStreamIds: true
+
+gnb1:
+  enabled: true
+  name: gnb1
+  replicaCount: 1
+  image:
+    name: free5gc/ueransim
+    tag: v4.0.1
+    pullPolicy: IfNotPresent
+  configmap:
+    name: gnb1-configmap
+  volume:
+    name: gnb1-volume
+    mount: /ueransim/config
+  service:
+    name: gnb1-service
+    type: ClusterIP
+    port: 4997
+    protocol: UDP
+
+  n2if:  # NGAP
+    ipAddress: 10.100.50.242
+  n3if:  # GTP-U
+    ipAddress: 10.100.50.136
+
+  amf:
+    n2if:  # NGAP
+      ipAddress: 10.100.50.249
+      port: 38412
+    service:
+      ngap:
+        enabled: false
+
+  podAnnotations: {}
+    # additional annotations
+  imagePullSecrets: []
+  podSecurityContext: {}
+  resources:
+    requests:
+      cpu: 100m
+      memory: 256Mi
+  nodeSelector: {}
+  tolerations: []
+  affinity: {}
+
+  configuration: |-
+    mcc: '208' # Mobile Country Code value
+    mnc: '93'  # Mobile Network Code value (2 or 3 digits)
+    nci: '0x000000011'  # NR Cell Identity (36-bit)
+    idLength: 32        # NR gNB ID length in bits [22...32]
+    tac: 1     # Tracking Area Code
+    # List of supported S-NSSAIs by this gNB
+    slices:
+      - sst: 0x1
+        sd: 0x010203
+    # Indicates whether or not SCTP stream number errors should be ignored.
+    ignoreStreamIds: true
+
+gnb2:
+  enabled: true
+  name: gnb2
+  replicaCount: 1
+  image:
+    name: free5gc/ueransim
+    tag: v4.0.1
+    pullPolicy: IfNotPresent
+  configmap:
+    name: gnb2-configmap
+  volume:
+    name: gnb2-volume
+    mount: /ueransim/config
+  service:
+    name: gnb2-service
+    type: ClusterIP
+    port: 4997
+    protocol: UDP
+
+  n2if:  # NGAP
+    ipAddress: 10.100.50.243
+  n3if:  # GTP-U
+    ipAddress: 10.100.50.137
+
+  amf:
+    n2if:  # NGAP
+      ipAddress: 10.100.50.249
+      port: 38412
+    service:
+      ngap:
+        enabled: false
+
+  podAnnotations: {}
+    # additional annotations
+  imagePullSecrets: []
+  podSecurityContext: {}
+  resources:
+    requests:
+      cpu: 100m
+      memory: 256Mi
+  nodeSelector: {}
+  tolerations: []
+  affinity: {}
+
+  configuration: |-
+    mcc: '208' # Mobile Country Code value
+    mnc: '93'  # Mobile Network Code value (2 or 3 digits)
+    nci: '0x000000011'  # NR Cell Identity (36-bit)
+    idLength: 32        # NR gNB ID length in bits [22...32]
+    tac: 1     # Tracking Area Code
+    # List of supported S-NSSAIs by this gNB
+    slices:
+      - sst: 0x1
+        sd: 0x010203
+    # Indicates whether or not SCTP stream number errors should be ignored.
+    ignoreStreamIds: true
+
+gnb3:
+  enabled: false
+  name: gnb3
+  replicaCount: 1
+  image:
+    name: free5gc/ueransim
+    tag: v4.0.1
+    pullPolicy: IfNotPresent
+  configmap:
+    name: gnb3-configmap
+  volume:
+    name: gnb3-volume
+    mount: /ueransim/config
+  service:
+    name: gnb3-service
+    type: ClusterIP
+    port: 4997
+    protocol: UDP
+
+  n2if:  # NGAP
+    ipAddress: 10.100.50.244
+  n3if:  # GTP-U
+    ipAddress: 10.100.50.138
+
+  amf:
+    n2if:  # NGAP
+      ipAddress: 10.100.50.249
+      port: 38412
+    service:
+      ngap:
+        enabled: false
+
+  podAnnotations: {}
+    # additional annotations
+  imagePullSecrets: []
+  podSecurityContext: {}
+  resources:
+    requests:
+      cpu: 100m
+      memory: 256Mi
+  nodeSelector: {}
+  tolerations: []
+  affinity: {}
+
+  configuration: |-
+    mcc: '208' # Mobile Country Code value
+    mnc: '93'  # Mobile Network Code value (2 or 3 digits)
+    nci: '0x000000011'  # NR Cell Identity (36-bit)
+    idLength: 32        # NR gNB ID length in bits [22...32]
+    tac: 1     # Tracking Area Code
+    # List of supported S-NSSAIs by this gNB
+    slices:
+      - sst: 0x1
+        sd: 0x010203
+    # Indicates whether or not SCTP stream number errors should be ignored.
+    ignoreStreamIds: true
+
+gnb4:
+  enabled: false
+  name: gnb4
+  replicaCount: 1
+  image:
+    name: free5gc/ueransim
+    tag: v4.0.1
+    pullPolicy: IfNotPresent
+  configmap:
+    name: gnb4-configmap
+  volume:
+    name: gnb4-volume
+    mount: /ueransim/config
+  service:
+    name: gnb4-service
+    type: ClusterIP
+    port: 4997
+    protocol: UDP
+
+  n2if:  # NGAP
+    ipAddress: 10.100.50.245
+  n3if:  # GTP-U
+    ipAddress: 10.100.50.139
+
+  amf:
+    n2if:  # NGAP
+      ipAddress: 10.100.50.249
+      port: 38412
+    service:
+      ngap:
+        enabled: false
+
+  podAnnotations: {}
+    # additional annotations
+  imagePullSecrets: []
+  podSecurityContext: {}
+  resources:
+    requests:
+      cpu: 100m
+      memory: 256Mi
+  nodeSelector: {}
+  tolerations: []
+  affinity: {}
+
+  configuration: |-
+    mcc: '208' # Mobile Country Code value
+    mnc: '93'  # Mobile Network Code value (2 or 3 digits)
+    nci: '0x000000011'  # NR Cell Identity (36-bit)
+    idLength: 32        # NR gNB ID length in bits [22...32]
+    tac: 1     # Tracking Area Code
+    # List of supported S-NSSAIs by this gNB
+    slices:
+      - sst: 0x1
+        sd: 0x010203
+    # Indicates whether or not SCTP stream number errors should be ignored.
+    ignoreStreamIds: true
+
 ue:
   enabled: true
   name: ue
@@ -112,7 +341,8 @@ ue:
   volume:
     name: ue-volume
     mount: /ueransim/config
-  command: "./nr-ue -c ./config/ue-config.yaml"  # This is the command that will be launched in the UE container
+  command: "sleep infinity"  # This is the command that will be launched in the UE container
+  # command: "./nr-ue -c config/ue-config.yaml"
   # A script that will be run after the UE creation. It may be used to periodically generate traffic
   script: ""
   # script: |-
@@ -127,8 +357,8 @@ ue:
             add: ["NET_ADMIN"]
   resources:
     requests:
-      cpu: 100m
-      memory: 128Mi
+      cpu: 2000m
+      memory: 2048Mi
   nodeSelector: {}
   tolerations: []
   affinity: {}
